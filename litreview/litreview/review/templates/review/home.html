@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+    <a href="{% url 'ticket-create' %}">Créer un ticket</a>
+    <h2>Tickets</h2>
+    {% for ticket in tickets %}
+    <p>{{ ticket.title }}</p>
+    <p>{{ ticket.user }}</p>
+    <p>{{ ticket.time_created }}</p>
+    <p>{{ ticket.description }}</p>
+    <img src="{{ ticket.photo.image.url }}">
+    <a href="{% url 'ticket-update' ticket.id %}">[Modifier]</a>
+        <p>{{ ticket.photo.caption }}</p>
+    {% endfor %}
+{% endblock content %}
