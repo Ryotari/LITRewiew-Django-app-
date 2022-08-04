@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: black;
+}
+
+img {
+    width: 400px;
+    height: auto;
+}
+
+header {
+    width: 100%;
+    height: 90px;
+    background: whitesmoke;
+    margin-bottom: 75px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    box-shadow: 0px 1px 2px 1px black;
+}
+
+/* Logo */
+.logo {
+    flex-basis: 60%;
+    padding: 0px 20px;
+}
+
+.logo img {
+    width: 90px;
+    height: 90px;
+}
+
+/* Menu de navigation */
+
+nav {
+    flex-basis: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0px 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+nav a:hover {
+    border-bottom: 2px black solid;
+}
+
+.create__post {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+    align-items: center;
+    gap: 8%;
+    margin-bottom: 20px;
+}
+
+.create__post a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.ticket {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 30%;
+    width: 40%;
+    margin-bottom: 50px;
+    border: 1px black solid;
+    overflow-wrap: break-all;
+}
+
+.ticket__options {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ticket a {
+    padding: 5px 15px;
+    color: black;
+    text-decoration: none;
+}
+
