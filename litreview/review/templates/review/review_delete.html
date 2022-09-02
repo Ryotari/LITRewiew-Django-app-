@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="formHolder">
+    <h1 class="titleForm">Supprimer la critique</h1>
+    <p>Etes-vous sûr de vouloir supprimer la critique suivante ?</p>
 
-<h1>Supprimer la critique</h1>
-<p>Etes-vous sûr de vouloir supprimer la critique suivante ?</p>
-
-<p>{{ review.headline }}<br>
-{{ review.body }}</p>
-<p>{{ review.ticket.title }}<br>
-{{ review.ticket.description }}</p>
-<img src="{{ review.ticket.photo.image.url }}">
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Supprimer">
-</form>
-
+    <p class="review__headline_rating">{{ review.headline }}</p>
+    <p class="review__body">{{ review.body }}</p>
+    <p class="ticket__title">{{ review.ticket.title }}</p>
+    <p class="ticket__description">{{ review.ticket.description }}</p>
+    <div class="image__container">
+        <img src="{{ review.ticket.photo.image.url }}">
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="button__holder">
+            <button type="submit" value="Supprimer">Supprimer</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

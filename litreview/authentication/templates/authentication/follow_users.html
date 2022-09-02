@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="formHolder">
+    <h1 class="title">Suivre</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="button__holder">
+            <button type="submit" value="Modifier">Follow</button>
+        </div>
+    </form>
+    <p class="message">{{ message }}</p>
+</div>
+<div class="follows__box">
+    <div class="followSystem">
+        <div class="following">
+            <p class="followType">Followed users : {{ user_follows.count }}</p>
+            {% for follow in user_follows %}
+            <div class="followedUsers">
+                <img class="followImage" src="{{ follow.followed_user.image.url }}">
+                <a class="followUsername" href="{% url 'user-profile' follow.followed_user.id %}">{{ follow.followed_user.username }}</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="following">
+            <p class="followType">Users following you : {{ followed_by.count }}</p>
+            {% for follow in followed_by %}
+            <div class="followedUsers">
+                <img class="followImage" src="{{ follow.followed_user.image.url }}">
+                <a class="followUsername" href="{% url 'user-profile' follow.followed_user.id %}">{{ follow.followed_user.username }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

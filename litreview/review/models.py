@@ -11,7 +11,7 @@ class Photo(models.Model):
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
-    IMAGE_MAX_SIZE = (400, 400)
+    IMAGE_MAX_SIZE = (300, 300)
     
     def resize_image(self):
 
@@ -34,18 +34,6 @@ class Ticket(models.Model):
     photo = models.ForeignKey(Photo, null=True, on_delete=models.SET_NULL, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
-    def give_permissions_to_creator(self):
-
-        user = User.objects.get(username=self.user)
-        permission = Permission.objects.get(codename='change_ticket')
-        user.user_permissions.add(permission)
-        permission = Permission.objects.get(codename='delete_ticket')
-        user.user_permissions.add(permission)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.give_permissions_to_creator()
-
 class Review(models.Model):
 
     class Rating(models.TextChoices):
@@ -62,26 +50,3 @@ class Review(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
-
-    def give_permissions_to_creator(self):
-
-        user = User.objects.get(username=self.user)
-        permission = Permission.objects.get(codename='change_review')
-        user.user_permissions.add(permission)
-        permission = Permission.objects.get(codename='delete_review')
-        user.user_permissions.add(permission)
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.give_permissions_to_creator()
-
-class UserFollows(models.Model):
-    user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='following')
-    followed_user = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='followed_by')
-
-    class Meta:
-        # ensures we don't get multiple UserFollows instances
-        # for unique user-user_followed pairs
-        unique_together = ('user', 'followed_user', )

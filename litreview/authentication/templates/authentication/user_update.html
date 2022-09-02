@@ -2,12 +2,12 @@
 {% block content %}
 
 <div class="formHolder">
-    <h1 class="titleForm">Modifier la critique</h1>
+    <h1 class="titleForm">Modifiez votre profil</h1>
     <form action="" method="post" enctype="multipart/form-data">
-        {{ review_form.as_p }}
         {% csrf_token %}
+        {{ user_update_form.as_p }}
         <div class="button__holder">
-            <button type="submit" value="Envoyer">Modifier</button>
+            <button type="submit" value="Modifier">Modifier</button>
         </div>
     </form>
 </div>

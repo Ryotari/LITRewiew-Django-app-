@@ -1,10 +1,12 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: arial;
 }
 
 body {
     color: black;
+    background-color: #cce6ff;
 }
 
 img {
@@ -53,11 +55,11 @@ nav a {
     padding: 5px;
 }
 
-nav a:hover {
+nav a:hover, .ticket__user a:hover {
     border-bottom: 2px black solid;
 }
 
-.create__post {
+.create__post, .update__profile {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -65,36 +67,256 @@ nav a:hover {
     justify-content: center;
     align-items: center;
     gap: 8%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
-.create__post a {
+.update__profile {
+    margin-top: 30px;
+}
+
+.create__post a, .update__profile a, .ticket__user a, .review__user a {
     text-decoration: none;
-    color: black;
     font-weight: bold;
     font-size: 18px;
 }
 
-.ticket {
+.ticket__user a, .review__user a {
+    color: black;
+}
+
+.ticket__button, .review__button {
+    color: #732673;
+    padding: 10px 10px;
+    border: 3px #732673 solid;
+    border-radius: 5px;
+    background-color: #ffffcc;
+    box-shadow: 5px 5px 2px grey;
+}
+
+.ticket, .review {
+    border: 5px solid #482278;
+    background-color: #b3b3ff;
+    margin: 0 auto;
+    width: 40%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.ticket__settings, .review__settings {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 15px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+}
+
+.ticket__user, .review__user {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.ticket__time, .review__time {
+    font-style: italic;
+}
+
+.ticket__title, .review__headline_rating {
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 5px 0px;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+}
+
+.ticket__description, .review__body {
+    text-align: left;
+    padding: 0 15px;
+    overflow-wrap: break-word;
+    margin-bottom: 15px;
+}
+
+.image__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.image__container > img{
+    width: auto;
+    height: auto;
+}
+
+.ticket__options, .review__options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    margin: 5px 0px;
+    margin-bottom: 10px;
+    overflow-wrap: break-word;
+}
+
+.ticket__options a, .review__options a {
+    color: #f2f2f2;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.ticket__options a:hover, .review__options a:hover {
+    border-bottom: 2px #f2f2f2 solid;
+}
+
+.review__ticket {
+    border: 2px solid #482278;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 10px;
+    border-radius: 10px;
+}
+
+
+/*form css*/
+
+.formHolder, .centerDiv {
+    width: 50%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 30%;
-    width: 40%;
-    margin-bottom: 50px;
-    border: 1px black solid;
-    overflow-wrap: break-all;
 }
 
-.ticket__options {
+form {
+    width: 100%;
+    height: auto;
+}
+
+textarea {
+    width: 100%;
+    height: auto;
+    padding: 12px 20px;
+    resize: none;
+}
+
+.ticketForm__title, .reviewForm__headline {
+    width: 70%;
+}
+
+.titleForm, .title {
+    margin-bottom: 25px;
+}
+
+form > p {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.ticket a {
-    padding: 5px 15px;
-    color: black;
+label {
+    margin-bottom: 10px;
+}
+
+.button__holder {
+    margin: 0 auto;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    width: 40%;
+    color: #732673;
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 10px;
+    border: 3px #732673 solid;
+    border-radius: 5px;
+    background-color: #ffffcc;
+    box-shadow: 5px 5px 2px grey;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.delete__message {
+    font-weight: bold;
+    font-size: 25px;
+    color: red;
+    margin-bottom: 20px;
+}
+
+.message {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.follows__box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.followSystem {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.following {
+    display: flex;
+    flex-direction: column;
+}
+
+.followedUsers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px;
+}
+
+.followedUsers a {
     text-decoration: none;
+    color: black;
 }
 
+.followedUsers a:hover {
+    border-bottom: 2px black solid;
+}
+
+.followType {
+    font-weight: bold;
+    font-size: 20px;
+}
+.followImage {
+    width: auto;
+    height: 100px;
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.followUsername {
+    font-size: 18px;
+}
+
+.follow__count {
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}

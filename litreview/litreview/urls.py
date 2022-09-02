@@ -2,7 +2,13 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from authentication.views import login_user, logout_user, signup
+from authentication.views import (login_user,
+                                logout_user,
+                                signup,
+                                user_profile,
+                                user_update,
+                                user_delete,
+                                follow_users)
 from review import views
 
 
@@ -12,6 +18,10 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('signup/', signup, name='signup'),
+    path('users/<int:user_id>/', user_profile, name='user-profile'),
+    path('users/<int:user_id>/update/', user_update, name='user-update'),
+    path('users/<int:user_id>/delete/', user_delete, name='user-delete'),
+    path('follow_users/', follow_users, name='follow-users'),
     path('home/', views.home, name='home'),
     path('ticket/create/', views.ticket_create, name='ticket-create'),
     path('ticket/<int:ticket_id>/update/', views.ticket_update, name='ticket-update'),

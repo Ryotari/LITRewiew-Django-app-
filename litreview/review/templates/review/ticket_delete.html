@@ -1,15 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="formHolder">
+    <h1 class="titleForm">Supprimer le ticket</h1>
+    <p>Etes-vous sûr de vouloir supprimer le ticket suivant ?</p>
 
-<h1>Supprimer le ticket</h1>
-<p>Etes-vous sûr de vouloir supprimer le ticket suivant ?</p>
-
-<p>{{ ticket.title }}</p>
-<p>{{ ticket.description }}</p>
-<img src="{{ ticket.photo.image.url }}">
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Supprimer">
-</form>
-
+    <p class="ticket__title">{{ ticket.title }}</p>
+    <p class="ticket__description">{{ ticket.description }}</p>
+    <div class="image__container">
+        <img src="{{ ticket.photo.image.url }}">
+    </div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="button__holder">
+            <button type="submit" value="Supprimer">Supprimer</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

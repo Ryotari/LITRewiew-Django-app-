@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Review, Ticket, UserFollows
+from .models import Review, Ticket
 
 
 class ReviewAdmin(admin.ModelAdmin):
@@ -15,4 +15,3 @@ class UserFollowsAdmin(admin.ModelAdmin):
 
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Ticket, TicketAdmin)
-admin.site.register(UserFollows, UserFollowsAdmin)

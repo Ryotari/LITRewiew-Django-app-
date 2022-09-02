@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Modifier le ticket</h1>
 
-<form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ ticket_form.as_p }}
-    {{ photo_form.as_p }}
-    <input type="submit" value="Envoyer">
-</form>
-
+<div class="formHolder">
+    <h1 class="titleForm">Modifier le ticket</h1>
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ ticket_form.as_p }}
+        {{ photo_form.as_p }}
+        <div class="button__holder">
+            <button type="submit" value="Modifier">Modifier</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="centerDiv">
+    <h1>Profil de {{ user.username }}</h1>
+    <img src="{{ user.image.url }}">
+    <div class="update__profile">
+        {% if request.user == user %}
+        <a href="{% url 'user-update' user.id %}" class="ticket__button">Modifier le profil</a>
+        <a href="{% url 'user-delete' user.id %}" class="review__button">Supprimer le profil</a>
+        {% endif %}
+    </div>
+</div>
+
+{% if request.user != user and not already_following%}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="button__holder">
+        <button type="submit" value="Modifier">Follow</button>
+    </div>
+</form>
+{% elif request.user.id != user.id and already_following %}
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="button__holder">
+        <button type="submit" value="Modifier">Unfollow</button>
+    </div>
+</form>
+{% endif %}
+<div class="centerDiv">
+    <div class="follow__count">
+        <p>Abonnements : {{ user_follows.count }}</p>
+        <p>Abonnés : {{ followed_by.count }}</p>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="formHolder">
+    <h1 class="titleForm">Supprimer le compte</h1>
+    <p class="delete__message">{{ user.username }}, êtes-vous sûr de vouloir supprimer votre compte ?</p>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="button__holder">
+            <button type="submit" value="Supprimer">Supprimer</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
