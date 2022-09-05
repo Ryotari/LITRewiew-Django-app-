@@ -2,57 +2,58 @@
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'review/home.css' %}">
 {% block content %}
-    <div class="create__post">
-        <a href="{% url 'ticket-create' %}" class="ticket__button">Créer un ticket</a>
-        <a href="{% url 'review-without-ticket' %}" class="review__button">Écrire une critique</a>
+
+<div class="create__post">
+    <a href="{% url 'ticket-create' %}" class="ticket__button">Créer un ticket</a>
+    <a href="{% url 'review-without-ticket' %}" class="review__button">Écrire une critique</a>
+</div>
+{% for post in posts %}
+{% if post.content_type == 'TICKET' %}
+<div class="ticket">
+    <div class="ticket__settings">
+        <p class="ticket__user">
+            <a href="{% url 'user-profile' post.user.id %}">{{ post.user }}</a>
+        </p>
+        <p class="ticket__time">{{ post.time_created }}</p>
     </div>
-    {% for post in posts %}
-    {% if post.content_type == 'TICKET' %}
-    <div class="ticket">
-        <div class="ticket__settings">
-            <p class="ticket__user">
-                <a href="{% url 'user-profile' post.user.id %}">{{ post.user }}</a>
-            </p>
-            <p class="ticket__time">{{ post.time_created }}</p>
-        </div>
-        <p class="ticket__title">{{ post.title }}</p>
-        <p class="ticket__description">{{ post.description }}</p>
+    <p class="ticket__title">{{ post.title }}</p>
+    <p class="ticket__description">{{ post.description }}</p>
+    <div class="image__container">
+        <img src="{{ post.photo.image.url }}">
+    </div>
+    <div class="ticket__options">
+        {% if request.user == post.user %}
+        <a href="{% url 'ticket-update' post.id %}">Modifier</a>
+        <a href="{% url 'ticket-delete' post.id %}">Supprimer</a>
+        {% endif %}
+        <a href="{% url 'review-ticket-create' post.id %}">Ecrire une critique</a>
+    </div>
+</div>
+{% elif post.content_type == 'REVIEW' %}
+<div class="review">
+    <div class="review__settings">
+        <p class="review__user">
+            <a href="{% url 'user-profile' post.user.id %}">{{ post.user }}</a>
+        </p>
+        <p class="review__time">{{ post.time_created }}</p>
+    </div>
+    <p class="review__headline_rating">{{ post.headline }} - {{ post.rating }}</p>
+    <p class="review__body">{{ post.body }}</p>
+    <div class="review__ticket">
+        <p class="ticket__title">{{ post.ticket.title }}</p>
+        <p class="ticket__user">{{ post.ticket.user }}</p>
+        <p class="ticket__description">{{ post.ticket.description }}</p>
         <div class="image__container">
-            <img src="{{ post.photo.image.url }}">
-        </div>
-        <div class="ticket__options">
-            {% if request.user == post.user %}
-            <a href="{% url 'ticket-update' post.id %}">Modifier</a>
-            <a href="{% url 'ticket-delete' post.id %}">Supprimer</a>
-            {% endif %}
-            <a href="{% url 'review-ticket-create' post.id %}">Ecrire une critique</a>
+            <img src="{{ post.ticket.photo.image.url }}">
         </div>
     </div>
-    {% elif post.content_type == 'REVIEW' %}
-    <div class="review">
-        <div class="review__settings">
-            <p class="review__user">
-                <a href="{% url 'user-profile' post.user.id %}">{{ post.user }}</a>
-            </p>
-            <p class="review__time">{{ post.time_created }}</p>
-        </div>
-        <p class="review__headline_rating">{{ post.headline }} - {{ post.rating }}</p>
-        <p class="review__body">{{ post.body }}</p>
-        <div class="review__ticket">
-            <p class="ticket__title">{{ post.ticket.title }}</p>
-            <p class="ticket__user">{{ post.ticket.user }}</p>
-            <p class="ticket__description">{{ post.ticket.description }}</p>
-            <div class="image__container">
-                <img src="{{ post.ticket.photo.image.url }}">
-            </div>
-        </div>
-        <div class="review__options">
-            {% if request.user == post.user %}
-            <a href="{% url 'review-update' post.id %}">Modifier</a>
-            <a href="{% url 'review-delete' post.id %}">Supprimer</a>
-            {% endif %}
-        </div>
+    <div class="review__options">
+        {% if request.user == post.user %}
+        <a href="{% url 'review-update' post.id %}">Modifier</a>
+        <a href="{% url 'review-delete' post.id %}">Supprimer</a>
+        {% endif %}
     </div>
-    {% endif %}
-    {% endfor %}
+</div>
+{% endif %}
+{% endfor %}
 {% endblock content %}

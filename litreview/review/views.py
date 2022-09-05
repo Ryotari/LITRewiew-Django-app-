@@ -141,8 +141,8 @@ def ticket_delete(request, ticket_id):
 def review_ticket_create(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     try:
-        review = Review.objects.filter(ticket=ticket)
-        if review is not None:
+        review = list(Review.objects.filter(ticket=ticket))
+        if review != []:
             return redirect('home')
     except Review.DoesNotExist:
         pass

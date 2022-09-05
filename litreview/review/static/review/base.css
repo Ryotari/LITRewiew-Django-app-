@@ -55,7 +55,7 @@ nav a {
     padding: 5px;
 }
 
-nav a:hover, .ticket__user a:hover {
+nav a:hover, .ticket__user a:hover, .review__user a:hover {
     border-bottom: 2px black solid;
 }
 
@@ -319,4 +319,52 @@ button:hover {
     align-items: center;
     width: 100%;
     margin-top: 20px;
+}
+
+@media screen and (max-width: 1280px) {
+    .logo {
+        padding: 0;
+    }
+
+    nav {
+        padding: 0;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        flex-basis: auto;
+    }
+
+    .formHolder {
+        width: 90%;
+    }
+
+    .ticket, .review {
+        width: 95%;
+    }
+
+    .review__ticket {
+        width: 90%;
+    }
+
+    .followSystem {
+        width: 95%;
+    }
+
+    .followImage {
+        height: 50px;
+        width: auto;
+        margin-right: 5px;
+    }
+
+    .centerDiv {
+        width: 90%;
+    }
+
+    .profilePic {
+        height: 200px;
+        width: auto;
+    }
+
+    textarea {
+        padding: 12px 10px;
+    }
 }

@@ -2,7 +2,7 @@
 {% block content %}
 <div class="centerDiv">
     <h1>Profil de {{ user.username }}</h1>
-    <img src="{{ user.image.url }}">
+    <img class='profilePic' src="{{ user.image.url }}">
     <div class="update__profile">
         {% if request.user == user %}
         <a href="{% url 'user-update' user.id %}" class="ticket__button">Modifier le profil</a>
