@@ -27,7 +27,7 @@
             {% for follow in followed_by %}
             <div class="followedUsers">
                 <img class="followImage" src="{{ follow.followed_user.image.url }}">
-                <a class="followUsername" href="{% url 'user-profile' follow.followed_user.id %}">{{ follow.followed_user.username }}</a>
+                <a class="followUsername" href="{% url 'user-profile' follow.user.id %}">{{ follow.user.username }}</a>
             </div>
             {% endfor %}
         </div>

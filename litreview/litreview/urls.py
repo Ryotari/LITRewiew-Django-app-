@@ -23,6 +23,7 @@ urlpatterns = [
     path('users/<int:user_id>/delete/', user_delete, name='user-delete'),
     path('follow_users/', follow_users, name='follow-users'),
     path('home/', views.home, name='home'),
+    path('int:<user_id>', views.get_user_posts, name='user-posts'),
     path('ticket/create/', views.ticket_create, name='ticket-create'),
     path('ticket/<int:ticket_id>/update/', views.ticket_update, name='ticket-update'),
     path('ticket/<int:ticket_id>/delete/', views.ticket_delete, name='ticket-delete'),

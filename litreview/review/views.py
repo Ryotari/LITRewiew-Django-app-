@@ -78,6 +78,21 @@ def get_tickets_for_feed(user: User):
 
     return tickets
 
+def get_user_posts(request, user_id):
+    tickets = Ticket.objects.filter(user=request.user)
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    reviews = Review.objects.filter(user=request.user)
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts_list = sorted(chain(reviews, tickets), key=lambda post: post.time_created, reverse=True)
+
+    if posts_list:
+        paginator = Paginator(posts_list, 5)
+        page = request.GET.get('page')
+        posts = paginator.get_page(page)
+    else:
+        posts = None
+
+    return render(request, 'review/user_posts.html', {'posts':posts})
 
 @login_required
 def ticket_create(request):
