@@ -78,6 +78,7 @@ def get_tickets_for_feed(user: User):
 
     return tickets
 
+@login_required
 def get_user_posts(request, user_id):
     tickets = Ticket.objects.filter(user=request.user)
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
